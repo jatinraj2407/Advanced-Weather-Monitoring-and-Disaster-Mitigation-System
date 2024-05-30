@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chennai School Map</title>
+  <!-- Include Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 600px; } /* Adjust height as needed */
+  </style>
+</head>
+<body>
+  <!-- Your map container -->
+  <div id="map"></div>
+
+  <!-- Include Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize the map
+    var map = L.map('map').setView([13.0827, 80.2707], 13); // Chennai coordinates and zoom level
+
+    // Add OpenStreetMap tiles to the map
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // School data
+    var schoolData = [
+      { name: "Bentinck Higher Secondary School for Girls-Entrance 1", latitude: 13.0867200, longitude: 80.2600700 },
+      { name: "Doveton Girls Higher Secondary School", latitude: 13.0852800, longitude: 80.2589600 },
+      { name: "Narayana Olympiad School", latitude: 13.0863400, longitude: 80.2629600 },
+      { name: "C. S. I. ST. Paul's Higher Secondary School", latitude: 13.0871200, longitude: 80.2623800 },
+      { name: "Jingle Kids", latitude: 13.0871900, longitude: 80.2627000 },
+      { name: "Doveton-Corrie Boys Higher Secondary School", latitude: 13.0861200, longitude: 80.2584900 },
+      { name: "Anita Methodist Matriculation Higher Secondary School", latitude: 13.0823800, longitude: 80.2598200 },
+      { name: "Guru Shree Shantivijai Jain Vidhyalaya", latitude: 13.0855800, longitude: 80.2641100 },
+      { name: "Balar Kalvi Nilayam", latitude: 13.0823700, longitude: 80.2596900 },
+      { name: "Opportunity School", latitude: 13.0823700, longitude: 80.2596900 },
+      { name: "Doveton Girl's Higher Secondary School", latitude: 13.0832700, longitude: 80.2585900 },
+      { name: "Kidzee", latitude: 13.0844900, longitude: 80.2578800 },
+      { name: "Genius Kids Play-School", latitude: 13.0855900, longitude: 80.2575900 },
+      { name: "S. M. D. P. V. C. Higher Secondary School", latitude: 13.0880000, longitude: 80.2591500 },
+      { name: "C. S. I. ST. Paul's Church Nursery and Primary School", latitude: 13.0882900, longitude: 80.2626100 }
+    ];
+
+    // Add markers for each school
+    schoolData.forEach(function(school) {
+      L.marker([school.latitude, school.longitude]).addTo(map)
+        .bindPopup(school.name);
+    });
+  </script>
+</body>
+</html>
